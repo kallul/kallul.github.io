@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: portfolio
+    env: python
+    plan: free
+    region: frankfurt
+    rootDir: web
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: MONGO_URI
+        sync: false          # set manually in Render dashboard
+      - key: MONGO_DB_NAME
+        value: portfolio
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: APP_NAME
+        value: Portfolio
+      - key: CONTACT_EMAIL
+        value: aizamitukallul@gmail.com
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false

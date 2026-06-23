@@ -1,0 +1,24 @@
+# Web framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# Templating
+jinja2==3.1.4
+python-multipart==0.0.12
+
+# MongoDB
+pymongo==4.10.1
+motor==3.6.0
+
+# Environment & config
+python-dotenv==1.0.1
+pydantic==2.10.3
+pydantic-settings==2.7.0
+
+# Email support
+aiosmtplib==3.0.2
+email-validator==2.2.0
+
+# Security
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
