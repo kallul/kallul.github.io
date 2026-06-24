@@ -11,11 +11,11 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: MONGO_URI
-        sync: false          # set manually in Render dashboard
+        value: mongodb+srv://kallulpt_db_user:6fxEUxPTWvODrste@clustera.fieldxl.mongodb.net/?appName=ClusterA
       - key: MONGO_DB_NAME
         value: portfolio
       - key: SECRET_KEY
-        generateValue: true
+        value: aiza-portfolio-secret-2026-xK9mP3qR
       - key: DEBUG
         value: false
       - key: APP_NAME
@@ -26,7 +26,3 @@ services:
         value: smtp.gmail.com
       - key: SMTP_PORT
         value: 587
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASSWORD
-        sync: false
