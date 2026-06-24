@@ -6,7 +6,13 @@ _client: AsyncIOMotorClient | None = None
 
 async def connect_db() -> None:
     global _client
-    _client = AsyncIOMotorClient(settings.MONGO_URI)
+    _client = AsyncIOMotorClient(
+        settings.MONGO_URI,
+        serverSelectionTimeoutMS=5000,
+        connectTimeoutMS=5000,
+    )
+    # Verify the connection is reachable at startup
+    await _client.admin.command("ping")
 
 
 async def close_db() -> None:
