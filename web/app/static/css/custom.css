@@ -172,13 +172,18 @@ body {
   overflow: hidden;
 }
 
+.hero-section.style-2 {
+  background-image: url('/static/images/hero_bg.png');
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
 .hero-section.style-2::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 65% 80% at -8% 5%,  rgba(200, 175, 255, 0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 65% at 42% -15%, rgba(165, 235, 250, 0.40) 0%, transparent 60%);
+  background: rgba(255, 255, 255, 0.18);
   pointer-events: none;
   z-index: 0;
 }
