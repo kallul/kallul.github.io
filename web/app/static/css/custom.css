@@ -1230,6 +1230,40 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   Services Cycle (diamond arc diagram)
+═══════════════════════════════════════════════════════════════ */
+
+.services-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.services-svg {
+  display: block;
+  min-width: 900px;
+}
+
+/* Animated arc tracing — quarter circle r=150 ≈ 236 length */
+.svc-pcm {
+  stroke-dasharray: 236;
+  stroke-dashoffset: 236;
+  animation: svcDraw 2s ease-in-out infinite alternate;
+}
+
+#svc-pcm1 { animation-delay: 0s;    }
+#svc-pcm2 { animation-delay: 0.5s;  }
+#svc-pcm3 { animation-delay: 1s;    }
+#svc-pcm4 { animation-delay: 1.5s;  }
+
+@keyframes svcDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 767px) {
+  .services-section { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    Hero Infinity Path Animation
 ═══════════════════════════════════════════════════════════════ */
 
