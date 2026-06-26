@@ -341,15 +341,18 @@ function initStatsBg() {
   resize();
   window.addEventListener("resize", resize);
 
-  const particles = Array.from({ length: 55 }, () => ({
-    x:    Math.random() * (W || 800),
-    y:    Math.random() * (H || 160),
-    r:    Math.random() * 2.2 + 0.4,
-    vy:  -(Math.random() * 0.35 + 0.08),
-    vx:   (Math.random() - 0.5) * 0.18,
-    ph:   Math.random() * Math.PI * 2,
-    phSpd:Math.random() * 0.025 + 0.01,
-    hue:  Math.random() < 0.4 ? 210 : (Math.random() < 0.5 ? 195 : 220),
+  // Template palette: primary blue, cyan, purple accent, light blue
+  const COLORS = ["#057aff", "#00D2FF", "#6366f1", "#4a90e2", "#057aff"];
+
+  const particles = Array.from({ length: 45 }, () => ({
+    x:     Math.random() * (W || 800),
+    y:     Math.random() * (H || 160),
+    r:     Math.random() * 5 + 4,          // 4–9 px — clearly visible bubbles
+    vy:   -(Math.random() * 0.28 + 0.06),
+    vx:    (Math.random() - 0.5) * 0.14,
+    ph:    Math.random() * Math.PI * 2,
+    phSpd: Math.random() * 0.02 + 0.008,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
   }));
 
   (function loop() {
@@ -358,14 +361,30 @@ function initStatsBg() {
       p.x  += p.vx;
       p.y  += p.vy;
       p.ph += p.phSpd;
-      if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W; }
-      if (p.x < -4) p.x = W + 4;
-      if (p.x > W + 4) p.x = -4;
-      const a = (0.12 + 0.14 * Math.abs(Math.sin(p.ph)));
-      ctx.globalAlpha = a;
-      ctx.fillStyle   = `hsl(${p.hue},80%,70%)`;
+      if (p.y < -p.r * 2) { p.y = H + p.r; p.x = Math.random() * W; }
+      if (p.x < -p.r)     p.x = W + p.r;
+      if (p.x > W + p.r)  p.x = -p.r;
+
+      const pulse = 0.3 + 0.25 * Math.abs(Math.sin(p.ph));
+
+      // Filled bubble with glow
+      ctx.globalAlpha = pulse * 0.55;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+
+      // Bubble ring stroke
+      ctx.globalAlpha = pulse * 0.8;
+      ctx.lineWidth   = 1.5;
+      ctx.strokeStyle = p.color;
+      ctx.stroke();
+
+      // Small highlight dot (top-left) for 3-D bubble look
+      ctx.globalAlpha = pulse * 0.6;
+      ctx.beginPath();
+      ctx.arc(p.x - p.r * 0.3, p.y - p.r * 0.35, p.r * 0.28, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
       ctx.fill();
     }
     ctx.globalAlpha = 1;
