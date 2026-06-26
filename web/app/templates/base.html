@@ -27,7 +27,9 @@
 
       <!-- Brand: logo mark + email -->
       <div class="d-flex align-items-center gap-2 me-4">
-        <a href="/" class="brand-mark text-decoration-none">A</a>
+        <a href="/" class="brand-mark text-decoration-none">
+          <img src="{{ url_for('static', path='images/logo.png') }}" alt="Logo" class="brand-logo-img" />
+        </a>
         <span class="brand-email d-none d-lg-block">aizamitukallul@gmail.com</span>
       </div>
 
@@ -46,6 +48,7 @@
           <li class="nav-item"><a class="nav-link" href="/#skills">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="/#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#gallery">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
         </ul>
         <a href="#contact" class="btn-resume ms-lg-3">

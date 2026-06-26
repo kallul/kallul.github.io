@@ -8,23 +8,10 @@
   <section id="hero" class="card-block mb-4 hero-section style-2">
     <div class="hero-inner">
 
-      <!-- Profile photo — glass + animated -->
-      <div class="hero-photo-col">
-        <!-- Animated blurred orbs (background depth) -->
-        <span class="ph-orb ph-orb-1"></span>
-        <span class="ph-orb ph-orb-2"></span>
-        <span class="ph-orb ph-orb-3"></span>
-        <!-- Pulsing rings -->
-        <span class="ph-ring ph-ring-1"></span>
-        <span class="ph-ring ph-ring-2"></span>
-        <!-- Glass card -->
-        <div class="ph-glass-card">
-          <img src="{{ url_for('static', path='images/profile.jpg') }}"
-               alt="Mohammad Ariful Islam" class="hero-photo"
-               id="heroPhoto"
-               onerror="this.style.display='none';document.getElementById('heroFallback').style.display='flex';" />
-          <div class="hero-fallback" id="heroFallback">A</div>
-        </div>
+      <!-- Skills diagram -->
+      <div class="hero-photo-col" id="heroSkillsCol">
+        <img src="{{ url_for('static', path='images/hero_diagram.png') }}"
+             alt="AI Engineer Skills" class="hero-diagram-img" />
       </div>
 
       <!-- Text -->
@@ -53,11 +40,18 @@
   </section>
 
   <!-- ═══ STATS CARD ═══════════════════════════════════════════ -->
-  <section id="stats" class="card-block mb-4">
+  <section id="stats" class="card-block mb-4 stats-section">
     <div class="stats-grid">
 
       <div class="stat-col">
-        <i class="fas fa-trophy stat-icon"></i>
+        <div class="stat-icon-wrap">
+          <svg class="stat-ring" viewBox="0 0 72 72" aria-hidden="true">
+            <circle class="stat-ring-bg"   cx="36" cy="36" r="30"/>
+            <circle class="stat-ring-fill" cx="36" cy="36" r="30"/>
+          </svg>
+          <div class="stat-orbit-wrap"><span class="stat-orbit-dot"></span></div>
+          <i class="fas fa-trophy stat-icon"></i>
+        </div>
         <div class="stat-number-row">
           <span class="stat-num" data-target="10">0</span><span class="stat-sfx">+</span>
         </div>
@@ -65,7 +59,14 @@
       </div>
 
       <div class="stat-col">
-        <i class="fas fa-briefcase stat-icon"></i>
+        <div class="stat-icon-wrap">
+          <svg class="stat-ring" viewBox="0 0 72 72" aria-hidden="true">
+            <circle class="stat-ring-bg"   cx="36" cy="36" r="30"/>
+            <circle class="stat-ring-fill" cx="36" cy="36" r="30"/>
+          </svg>
+          <div class="stat-orbit-wrap"><span class="stat-orbit-dot"></span></div>
+          <i class="fas fa-briefcase stat-icon"></i>
+        </div>
         <div class="stat-number-row">
           <span class="stat-num" data-target="20">0</span><span class="stat-sfx">+</span>
         </div>
@@ -73,7 +74,14 @@
       </div>
 
       <div class="stat-col">
-        <i class="fas fa-users stat-icon"></i>
+        <div class="stat-icon-wrap">
+          <svg class="stat-ring" viewBox="0 0 72 72" aria-hidden="true">
+            <circle class="stat-ring-bg"   cx="36" cy="36" r="30"/>
+            <circle class="stat-ring-fill" cx="36" cy="36" r="30"/>
+          </svg>
+          <div class="stat-orbit-wrap"><span class="stat-orbit-dot"></span></div>
+          <i class="fas fa-users stat-icon"></i>
+        </div>
         <div class="stat-number-row">
           <span class="stat-num" data-target="980">0</span><span class="stat-sfx">K+</span>
         </div>
@@ -81,7 +89,14 @@
       </div>
 
       <div class="stat-col">
-        <i class="fas fa-crown stat-icon"></i>
+        <div class="stat-icon-wrap">
+          <svg class="stat-ring" viewBox="0 0 72 72" aria-hidden="true">
+            <circle class="stat-ring-bg"   cx="36" cy="36" r="30"/>
+            <circle class="stat-ring-fill" cx="36" cy="36" r="30"/>
+          </svg>
+          <div class="stat-orbit-wrap"><span class="stat-orbit-dot"></span></div>
+          <i class="fas fa-crown stat-icon"></i>
+        </div>
         <div class="stat-number-row">
           <span class="stat-num" data-target="300">0</span><span class="stat-sfx">+</span>
         </div>
@@ -268,6 +283,31 @@
     </div>
 
   </div>
+
+  <!-- ═══ PRODUCT GALLERY CARD ══════════════════════════════════ -->
+  <section id="gallery" class="card-block mb-4 gallery-section">
+    <div class="card-inner">
+      <p class="blk-tag">UI Showcase</p>
+      <p class="blk-title">Product Gallery</p>
+      <p class="blk-body mb-4">A visual tour of software interfaces built across projects — from AI dashboards to enterprise web apps.</p>
+
+      <div class="marquee-viewport" id="gallery-marquee">
+        <!-- Row 1: left scroll -->
+        <div class="marquee-row marquee-row--left" id="marquee-row-1">
+          <div class="marquee-track" id="marquee-track-1"></div>
+        </div>
+        <!-- Row 2: right scroll -->
+        <div class="marquee-row marquee-row--right" id="marquee-row-2">
+          <div class="marquee-track" id="marquee-track-2"></div>
+        </div>
+        <!-- Loading state -->
+        <div id="gallery-loading" class="text-center py-5">
+          <div class="spinner-border spinner-border-sm me-2" style="color:var(--primary);" role="status"></div>
+          <span class="blk-body">Loading gallery…</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ CONTACT CARD ════════════════════════════════════════ -->
   <section id="contact" class="card-block mb-4">
