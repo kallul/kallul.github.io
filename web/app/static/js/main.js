@@ -308,9 +308,9 @@ function injectStatsSvgDefs() {
   svg.innerHTML = `
     <defs>
       <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stop-color="#00d2ff"/>
-        <stop offset="50%"  stop-color="#00d2ff"/>
-        <stop offset="100%" stop-color="#00d2ff"/>
+        <stop offset="0%"   stop-color="#57b0ff"/>
+        <stop offset="50%"  stop-color="#057aff"/>
+        <stop offset="100%" stop-color="#0050cc"/>
       </linearGradient>
     </defs>`;
   document.body.prepend(svg);
