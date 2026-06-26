@@ -172,20 +172,34 @@ body {
   overflow: hidden;
 }
 
-.hero-section.style-2 {
-  background-image: url('/static/images/hero_bg.png');
-  background-size: cover;
-  background-position: top left;
-  background-repeat: no-repeat;
+.hero-section.style-2::before {
+  display: none;
 }
 
-.hero-section.style-2::before {
-  content: '';
+/* Blurred colour orbs — replicates shwk.eu top-left mesh gradient */
+.hero-orb {
   position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
   pointer-events: none;
   z-index: 0;
+}
+
+.hero-orb-purple {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(178, 140, 255, 0.55) 0%, rgba(178, 140, 255, 0) 70%);
+  top: -180px;
+  left: -120px;
+  filter: blur(40px);
+}
+
+.hero-orb-cyan {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(120, 215, 245, 0.50) 0%, rgba(120, 215, 245, 0) 70%);
+  top: -100px;
+  left: 180px;
+  filter: blur(40px);
 }
 
 .hero-section.style-2 .hero-inner {
