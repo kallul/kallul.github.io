@@ -446,11 +446,13 @@ body {
   text-align: center;
   position: relative;
   z-index: 1;
+  background: #057aff;
+  border-radius: 12px;
 }
 
 .stat-col {
   padding: 0.75rem 1rem;
-  border-right: 1px solid #ffd0d0;
+  border-right: 1px solid rgba(255,255,255,0.2);
   position: relative;
   overflow: hidden;
   border-radius: 12px;
@@ -461,8 +463,8 @@ body {
 
 .stat-col:hover {
   transform: translateY(-5px);
-  background: rgba(207, 0, 0, 0.04);
-  box-shadow: 0 8px 28px rgba(207, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
 
@@ -510,9 +512,9 @@ body {
 /* faint track */
 .stat-ring-bg {
   fill: none;
-  stroke: #cf0000;
+  stroke: rgba(255,255,255,0.3);
   stroke-width: 2.5;
-  opacity: 0.15;
+  opacity: 1;
 }
 
 /* animated fill ring */
@@ -552,8 +554,8 @@ body {
   position: absolute;
   width: 8px; height: 8px;
   border-radius: 50%;
-  background: #cf0000;
-  box-shadow: 0 0 10px rgba(207, 0, 0, 1), 0 0 22px rgba(207, 0, 0, 0.6);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255,255,255,1), 0 0 22px rgba(255,255,255,0.6);
   top: 2px;
   left: 32px;
 }
@@ -561,7 +563,7 @@ body {
 /* ── Icon itself ────────────────────────────────────────────── */
 .stat-icon {
   font-size: 1.5rem;
-  color: #cf0000;
+  color: #ffffff;
   display: block;
   margin-bottom: 0;
   opacity: 0.9;
@@ -577,7 +579,7 @@ body {
 
 @keyframes iconFloat {
   0%, 100% { transform: translateY(0);    filter: drop-shadow(0 0 0 transparent); }
-  50%       { transform: translateY(-5px); filter: drop-shadow(0 0 8px rgba(207,0,0,0.7)); }
+  50%       { transform: translateY(-5px); filter: drop-shadow(0 0 8px rgba(255,255,255,0.8)); }
 }
 
 /* ── Numbers ────────────────────────────────────────────────── */
@@ -589,14 +591,14 @@ body {
 .stat-num {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 800;
-  color: #cf0000;
+  color: #ffffff;
   display: inline-block;
 }
 
 .stat-sfx {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 800;
-  color: #cf0000;
+  color: #ffffff;
 }
 
 /* glow pulse after counting finishes */
@@ -616,15 +618,15 @@ body {
   0%, 100% { text-shadow: none; }
   50% {
     text-shadow:
-      0 0 20px rgba(207, 0, 0, 0.55),
-      0 0 40px rgba(207, 0, 0, 0.25);
+      0 0 20px rgba(255,255,255,0.6),
+      0 0 40px rgba(255,255,255,0.3);
   }
 }
 
 .stat-lbl {
   font-size: 0.75rem;
   font-weight: 500;
-  color: #cf0000;
+  color: rgba(255,255,255,0.85);
   letter-spacing: 0.2px;
 }
 
