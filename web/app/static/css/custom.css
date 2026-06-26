@@ -423,16 +423,13 @@ body {
 
 /* ─── Stats — white card ─────────────────────────────────────── */
 /* ─── Stats section ──────────────────────────────────────────── */
-/* ══════════════════════════════════════════════════════════════
-   Speedometer Gauge Stats Section
-══════════════════════════════════════════════════════════════ */
-
 .stats-section {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #fff5f5 0%, #fff9f9 50%, #fff3f3 100%) !important;
 }
 
+/* floating particle canvas lives behind the grid */
 .stats-canvas {
   position: absolute;
   inset: 0;
@@ -442,101 +439,194 @@ body {
   z-index: 0;
 }
 
-.gauges-grid {
+.stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem 1rem;
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 2.75rem 2rem;
+  text-align: center;
   position: relative;
   z-index: 1;
 }
 
-.gauge-item {
-  display: flex;
-  flex-direction: column;
+.stat-col {
+  padding: 0.75rem 1rem;
+  border-right: 1px solid #ffd0d0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-col:last-child { border-right: none; }
+
+.stat-col:hover {
+  transform: translateY(-5px);
+  background: rgba(207, 0, 0, 0.04);
+  box-shadow: 0 8px 28px rgba(207, 0, 0, 0.12);
+  z-index: 2;
+}
+
+/* shimmer sweep on hover */
+.stat-col::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent);
+  transform: skewX(-15deg);
+  transition: none;
+  pointer-events: none;
+}
+.stat-col:hover::after {
+  animation: shimmerSweep 0.55s ease-out forwards;
+}
+
+@keyframes shimmerSweep {
+  to { left: 160%; }
+}
+
+/* ── Icon wrap + SVG ring ───────────────────────────────────── */
+.stat-icon-wrap {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 0.9rem;
 }
 
-.gauge-svg {
+.stat-ring {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 200px;
-  height: auto;
-  overflow: visible;
+  height: 100%;
+  transform: rotate(-90deg); /* start from top */
 }
 
-/* Tick marks (injected by JS) */
-.g-tick       { stroke: #d4d4d4; stroke-width: 1.5; stroke-linecap: round; }
-.g-tick-major { stroke: #b0b0b0; stroke-width: 2;   stroke-linecap: round; }
-
-/* Gray track arc */
-.g-arc-track {
+/* faint track */
+.stat-ring-bg {
   fill: none;
-  stroke: #ebebeb;
-  stroke-width: 11;
-  stroke-linecap: round;
+  stroke: #cf0000;
+  stroke-width: 2.5;
+  opacity: 0.15;
 }
 
-/* Gradient fill arc — animated via JS */
-.g-arc {
+/* animated fill ring */
+.stat-ring-fill {
   fill: none;
-  stroke-width: 11;
+  stroke: url(#ringGrad);
+  stroke-width: 2.5;
   stroke-linecap: round;
-  transition: stroke-dasharray 1.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  stroke-dasharray: 188.5;   /* 2π × 30 */
+  stroke-dashoffset: 188.5;  /* starts hidden */
+  transition: stroke-dashoffset 1.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* End marker dot */
-.g-dot {
-  fill: #cf0000;
-  filter: drop-shadow(0 0 5px rgba(207,0,0,0.65));
-  transition: cx 1.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-              cy 1.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+.stat-ring-fill.ring-animated {
+  stroke-dashoffset: 0;
 }
 
-/* Scale labels */
-.g-scale {
-  font-size: 11px;
-  font-weight: 600;
-  fill: #aaa;
-  font-family: Poppins, sans-serif;
-  text-anchor: middle;
+/* ── Orbiting glowing dot ───────────────────────────────────── */
+.stat-orbit-wrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: orbitSpin 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.4s;
 }
 
-/* Center value */
-.g-val {
-  font-size: 24px;
-  font-weight: 800;
-  fill: #1a1a1a;
-  font-family: Poppins, sans-serif;
-  text-anchor: middle;
+.stat-col.counted .stat-orbit-wrap {
+  opacity: 1;
 }
 
-/* Center sub-label */
-.g-sub {
-  font-size: 9.5px;
-  font-weight: 600;
-  fill: #999;
-  font-family: Poppins, sans-serif;
-  text-anchor: middle;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
+@keyframes orbitSpin {
+  to { transform: rotate(360deg); }
 }
 
-/* Bottom label under gauge */
-.gauge-label {
-  font-size: 0.72rem;
-  font-weight: 700;
+.stat-orbit-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #cf0000;
+  box-shadow: 0 0 10px rgba(207, 0, 0, 1), 0 0 22px rgba(207, 0, 0, 0.6);
+  top: 2px;
+  left: 32px;
+}
+
+/* ── Icon itself ────────────────────────────────────────────── */
+.stat-icon {
+  font-size: 1.5rem;
   color: #cf0000;
-  text-align: center;
-  margin: 0;
+  display: block;
+  margin-bottom: 0;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+  animation: iconFloat 3.5s ease-in-out infinite;
+}
+
+/* stagger float per sibling */
+.stat-col:nth-child(2) .stat-icon { animation-delay: 0.5s; }
+.stat-col:nth-child(3) .stat-icon { animation-delay: 1.0s; }
+.stat-col:nth-child(4) .stat-icon { animation-delay: 1.5s; }
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0);    filter: drop-shadow(0 0 0 transparent); }
+  50%       { transform: translateY(-5px); filter: drop-shadow(0 0 8px rgba(207,0,0,0.7)); }
+}
+
+/* ── Numbers ────────────────────────────────────────────────── */
+.stat-number-row {
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-num {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: #cf0000;
+  display: inline-block;
+}
+
+.stat-sfx {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: #cf0000;
+}
+
+/* glow pulse after counting finishes */
+.stat-col.counted .stat-num,
+.stat-col.counted .stat-sfx {
+  animation: numGlow 2.8s ease-in-out infinite;
+}
+
+.stat-col:nth-child(2).counted .stat-num,
+.stat-col:nth-child(2).counted .stat-sfx { animation-delay: 0.3s; }
+.stat-col:nth-child(3).counted .stat-num,
+.stat-col:nth-child(3).counted .stat-sfx { animation-delay: 0.6s; }
+.stat-col:nth-child(4).counted .stat-num,
+.stat-col:nth-child(4).counted .stat-sfx { animation-delay: 0.9s; }
+
+@keyframes numGlow {
+  0%, 100% { text-shadow: none; }
+  50% {
+    text-shadow:
+      0 0 20px rgba(207, 0, 0, 0.55),
+      0 0 40px rgba(207, 0, 0, 0.25);
+  }
+}
+
+.stat-lbl {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #cf0000;
   letter-spacing: 0.2px;
 }
-
-@media (max-width: 767px) {
-  .gauges-grid { grid-template-columns: repeat(2, 1fr); padding: 1.5rem 1rem; }
-}
-@media (max-width: 420px) {
-  .gauges-grid { grid-template-columns: repeat(1, 1fr); }
 
 /* ─── Inner padding for non-hero cards ──────────────────────── */
 .card-inner {
