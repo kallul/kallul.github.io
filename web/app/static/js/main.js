@@ -308,9 +308,9 @@ function injectStatsSvgDefs() {
   svg.innerHTML = `
     <defs>
       <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stop-color="#b070ff"/>
-        <stop offset="50%"  stop-color="#057aff"/>
-        <stop offset="100%" stop-color="#4a90e2"/>
+        <stop offset="0%"   stop-color="#ff4444"/>
+        <stop offset="50%"  stop-color="#cf0000"/>
+        <stop offset="100%" stop-color="#ff6b6b"/>
       </linearGradient>
     </defs>`;
   document.body.prepend(svg);
@@ -349,7 +349,7 @@ function initStatsBg() {
     vx:   (Math.random() - 0.5) * 0.18,
     ph:   Math.random() * Math.PI * 2,
     phSpd:Math.random() * 0.025 + 0.01,
-    hue:  Math.random() < 0.4 ? 210 : (Math.random() < 0.5 ? 195 : 220),
+    hue:  Math.random() < 0.4 ? 0 : (Math.random() < 0.5 ? 355 : 8),
   }));
 
   (function loop() {
