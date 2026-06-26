@@ -176,30 +176,30 @@ body {
   display: none;
 }
 
-/* Blurred colour orbs — replicates shwk.eu top-left mesh gradient */
+/* Soft sky-blue gradient matching reference image */
 .hero-orb {
   position: absolute;
-  border-radius: 50%;
   pointer-events: none;
   z-index: 0;
+  border-radius: 50%;
 }
 
 .hero-orb-purple {
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(178, 140, 255, 0.55) 0%, rgba(178, 140, 255, 0) 70%);
-  top: -180px;
-  left: -120px;
-  filter: blur(40px);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(190, 225, 248, 0.72) 0%, rgba(190, 225, 248, 0) 65%);
+  top: -350px;
+  left: -150px;
+  filter: blur(60px);
 }
 
 .hero-orb-cyan {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(120, 215, 245, 0.50) 0%, rgba(120, 215, 245, 0) 70%);
-  top: -100px;
-  left: 180px;
-  filter: blur(40px);
+  width: 700px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(208, 234, 252, 0.65) 0%, rgba(208, 234, 252, 0) 65%);
+  top: -180px;
+  left: 200px;
+  filter: blur(55px);
 }
 
 .hero-section.style-2 .hero-inner {
