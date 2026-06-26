@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  injectStatsSvgDefs();
   initStatsBg();
   setupNavbar();
-  setupCounters();
+  setupGauges();
   loadSkills();
   loadProjects();
   loadGallery();
@@ -299,21 +298,72 @@ function initHeroNodes() {
   draw();
 }
 
-/* ─── Stats: inject SVG gradient definition ─────────────────── */
-function injectStatsSvgDefs() {
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("width", "0");
-  svg.setAttribute("height", "0");
-  svg.style.cssText = "position:absolute;overflow:hidden;width:0;height:0";
-  svg.innerHTML = `
-    <defs>
-      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stop-color="#ff4444"/>
-        <stop offset="50%"  stop-color="#cf0000"/>
-        <stop offset="100%" stop-color="#ff6b6b"/>
-      </linearGradient>
-    </defs>`;
-  document.body.prepend(svg);
+/* ─── Speedometer Gauge animation ───────────────────────────── */
+function setupGauges() {
+  const NS   = "http://www.w3.org/2000/svg";
+  const CX   = 110, CY = 130, R = 80;
+  const CIRC = 2 * Math.PI * R;          // ≈ 502.65
+  const ARC  = CIRC * 0.75;              // 270° ≈ 377
+  const TICKS = 30, START_DEG = 135;
+
+  document.querySelectorAll(".gauge-item").forEach(item => {
+    const svg = item.querySelector(".gauge-svg");
+    if (!svg) return;
+
+    // Inject tick marks before all other children
+    for (let i = 0; i <= TICKS; i++) {
+      const deg    = START_DEG + (i / TICKS) * 270;
+      const rad    = deg * Math.PI / 180;
+      const major  = i % 5 === 0;
+      const rInner = major ? 66 : 71;
+      const line   = document.createElementNS(NS, "line");
+      line.setAttribute("x1", (CX + R      * Math.cos(rad)).toFixed(2));
+      line.setAttribute("y1", (CY + R      * Math.sin(rad)).toFixed(2));
+      line.setAttribute("x2", (CX + rInner * Math.cos(rad)).toFixed(2));
+      line.setAttribute("y2", (CY + rInner * Math.sin(rad)).toFixed(2));
+      line.setAttribute("class", major ? "g-tick-major" : "g-tick");
+      svg.insertBefore(line, svg.firstChild);
+    }
+  });
+
+  // Animate on scroll into view
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+
+      const item  = e.target;
+      const pct   = parseFloat(item.dataset.pct) / 100;
+      const arc   = item.querySelector(".g-arc");
+      const dot   = item.querySelector(".g-dot");
+      const idx   = Array.from(document.querySelectorAll(".gauge-item")).indexOf(item);
+
+      setTimeout(() => {
+        const t0  = performance.now();
+        const dur = 1600;
+
+        (function step(now) {
+          const prog  = Math.min((now - t0) / dur, 1);
+          const ease  = 1 - Math.pow(1 - prog, 3);
+          const cur   = ease * pct;
+          const fill  = cur * ARC;
+
+          if (arc) arc.setAttribute("stroke-dasharray", `${fill.toFixed(2)} ${CIRC.toFixed(2)}`);
+
+          // Move end-marker dot along the arc
+          if (dot) {
+            const deg = (START_DEG + cur * 270) * Math.PI / 180;
+            dot.setAttribute("cx", (CX + R * Math.cos(deg)).toFixed(2));
+            dot.setAttribute("cy", (CY + R * Math.sin(deg)).toFixed(2));
+          }
+
+          if (prog < 1) requestAnimationFrame(step);
+        })(t0);
+      }, idx * 150);
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll(".gauge-item").forEach(item => io.observe(item));
 }
 
 /* ─── Stats: floating particle canvas background ────────────── */
@@ -399,49 +449,6 @@ function setupNavbar() {
   tick();
 }
 
-/* ─── Stats counter animation ───────────────────────────────── */
-function setupCounters() {
-  const cols = document.querySelectorAll(".stat-col");
-  if (!cols.length) return;
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      io.unobserve(e.target);
-
-      const col   = e.target;
-      const idx   = Array.from(cols).indexOf(col);
-      const delay = idx * 160;
-
-      setTimeout(() => {
-        // 1. Animate the SVG ring fill
-        const ring = col.querySelector(".stat-ring-fill");
-        if (ring) ring.classList.add("ring-animated");
-
-        // 2. Count up the number, mark done when finished
-        const numEl = col.querySelector(".stat-num");
-        if (numEl) {
-          countUp(numEl, parseInt(numEl.dataset.target, 10), 1700, () => {
-            col.classList.add("counted");  // triggers orbit + glow
-          });
-        }
-      }, delay);
-    });
-  }, { threshold: 0.35 });
-
-  cols.forEach(col => io.observe(col));
-}
-
-function countUp(el, end, duration, onDone) {
-  const t0 = performance.now();
-  (function step(now) {
-    const p      = Math.min((now - t0) / duration, 1);
-    const eased  = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.floor(eased * end);
-    if (p < 1) requestAnimationFrame(step);
-    else { el.textContent = end; if (onDone) onDone(); }
-  })(t0);
-}
 
 /* ─── Skills ────────────────────────────────────────────────── */
 async function loadSkills() {
