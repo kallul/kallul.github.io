@@ -8,10 +8,169 @@
   <section id="hero" class="card-block mb-4 hero-section style-2">
     <div class="hero-inner">
 
-      <!-- Skills diagram -->
+      <!-- Infinity tech stack animation -->
       <div class="hero-photo-col" id="heroSkillsCol">
-        <img src="{{ url_for('static', path='images/hero_diagram.png') }}"
-             alt="AI Engineer Skills" class="hero-diagram-img" />
+        <svg viewBox="0 0 800 400" class="infinity-svg" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="infGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#057AFF"/>
+              <stop offset="50%" stop-color="#00D2FF"/>
+              <stop offset="100%" stop-color="#057AFF"/>
+            </linearGradient>
+            <filter id="inf-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+
+          <!-- Track path (background) -->
+          <path id="infPath"
+            d="M 100 200 C 100 50 300 50 400 200 C 500 350 700 350 700 200 C 700 50 500 50 400 200 C 300 350 100 350 100 200"
+            fill="none" stroke="rgba(5,122,255,0.1)" stroke-width="16" stroke-linecap="round"/>
+
+          <!-- Animated glowing path -->
+          <path
+            d="M 100 200 C 100 50 300 50 400 200 C 500 350 700 350 700 200 C 700 50 500 50 400 200 C 300 350 100 350 100 200"
+            fill="none" stroke="url(#infGrad)" stroke-width="7" stroke-linecap="round"
+            filter="url(#inf-glow)" class="infinity-dash"/>
+
+          <!-- ── Python ── -->
+          <g>
+            <animateMotion dur="28s" repeatCount="indefinite" rotate="0" begin="0s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#3776ab"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Py</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">Python</text>
+          </g>
+
+          <!-- ── FastAPI ── -->
+          <g>
+            <animateMotion dur="29.2s" repeatCount="indefinite" rotate="0" begin="-2.2s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#009688"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">FA</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">FastAPI</text>
+          </g>
+
+          <!-- ── React ── -->
+          <g>
+            <animateMotion dur="30.4s" repeatCount="indefinite" rotate="0" begin="-4.4s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#087ea4"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Re</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">React</text>
+          </g>
+
+          <!-- ── LangChain ── -->
+          <g>
+            <animateMotion dur="31.6s" repeatCount="indefinite" rotate="0" begin="-6.6s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#1c3c5e"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">LC</text>
+            <text x="0" y="21" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">LangChain</text>
+          </g>
+
+          <!-- ── AWS ── -->
+          <g>
+            <animateMotion dur="32.8s" repeatCount="indefinite" rotate="0" begin="-8.8s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#ff9900"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9" font-weight="700" fill="white" font-family="Poppins,sans-serif">AWS</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">AWS</text>
+          </g>
+
+          <!-- ── Docker ── -->
+          <g>
+            <animateMotion dur="34s" repeatCount="indefinite" rotate="0" begin="-11s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#2496ed"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Do</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">Docker</text>
+          </g>
+
+          <!-- ── MongoDB ── -->
+          <g>
+            <animateMotion dur="35.2s" repeatCount="indefinite" rotate="0" begin="-13.2s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#47a248"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9" font-weight="700" fill="white" font-family="Poppins,sans-serif">MDB</text>
+            <text x="0" y="21" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">MongoDB</text>
+          </g>
+
+          <!-- ── RAG ── -->
+          <g>
+            <animateMotion dur="36.4s" repeatCount="indefinite" rotate="0" begin="-15.4s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#7c3aed"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">RAG</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">RAG</text>
+          </g>
+
+          <!-- ── GitHub ── -->
+          <g>
+            <animateMotion dur="37.6s" repeatCount="indefinite" rotate="0" begin="-17.6s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#24292e"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">GH</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">GitHub</text>
+          </g>
+
+          <!-- ── LLM / AI ── -->
+          <g>
+            <animateMotion dur="38.8s" repeatCount="indefinite" rotate="0" begin="-19.8s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#057AFF"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">LLM</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">LLM</text>
+          </g>
+
+          <!-- ── Kafka ── -->
+          <g>
+            <animateMotion dur="40s" repeatCount="indefinite" rotate="0" begin="-22s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#e34c26"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Kfk</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">Kafka</text>
+          </g>
+
+          <!-- ── Django ── -->
+          <g>
+            <animateMotion dur="41.2s" repeatCount="indefinite" rotate="0" begin="-24.2s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#0c4b33"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Dj</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">Django</text>
+          </g>
+
+          <!-- ── Vue.js ── -->
+          <g>
+            <animateMotion dur="42.4s" repeatCount="indefinite" rotate="0" begin="-26.4s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#42b883"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Vue</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">Vue.js</text>
+          </g>
+
+          <!-- ── Redis ── -->
+          <g>
+            <animateMotion dur="43.6s" repeatCount="indefinite" rotate="0" begin="-28.6s"><mpath href="#infPath"/></animateMotion>
+            <circle r="28" fill="white" style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))"/>
+            <circle r="19" fill="#dc382d"/>
+            <text x="0" y="5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="Poppins,sans-serif">Rd</text>
+            <text x="0" y="21" text-anchor="middle" font-size="9" font-weight="700" fill="#1d1d1f" stroke="rgba(255,255,255,0.95)" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="Poppins,sans-serif">Redis</text>
+          </g>
+
+          <!-- ── Center anchor ── -->
+          <g class="center-anchor">
+            <circle cx="400" cy="200" r="38" fill="white" style="filter:drop-shadow(0 0 15px rgba(5,122,255,0.3))"/>
+            <circle cx="400" cy="200" r="33" fill="none" stroke="#057AFF" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.35">
+              <animateTransform attributeName="transform" type="rotate" from="0 400 200" to="360 400 200" dur="8s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="400" cy="200" r="26" fill="#057AFF"/>
+            <text x="400" y="196" text-anchor="middle" font-size="12" font-weight="800" fill="white" font-family="Poppins,sans-serif">MAI</text>
+            <text x="400" y="208" text-anchor="middle" font-size="6" font-weight="600" fill="white" opacity="0.85" font-family="Poppins,sans-serif" letter-spacing="0.8">AI ENG</text>
+          </g>
+        </svg>
       </div>
 
       <!-- Text -->
