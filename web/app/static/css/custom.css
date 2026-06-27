@@ -185,21 +185,21 @@ body {
 }
 
 .hero-orb-purple {
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, rgba(190, 225, 248, 0.72) 0%, rgba(190, 225, 248, 0) 65%);
-  top: -350px;
-  left: -150px;
-  filter: blur(60px);
+  width: 950px;
+  height: 950px;
+  background: radial-gradient(circle, rgba(208, 190, 255, 0.58) 0%, rgba(208, 190, 255, 0) 65%);
+  top: -300px;
+  left: -180px;
+  filter: blur(70px);
 }
 
 .hero-orb-cyan {
-  width: 700px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(208, 234, 252, 0.65) 0%, rgba(208, 234, 252, 0) 65%);
-  top: -180px;
-  left: 200px;
-  filter: blur(55px);
+  width: 650px;
+  height: 580px;
+  background: radial-gradient(ellipse, rgba(168, 232, 248, 0.52) 0%, rgba(168, 232, 248, 0) 65%);
+  top: -220px;
+  left: 280px;
+  filter: blur(65px);
 }
 
 .hero-section.style-2 .hero-inner {
