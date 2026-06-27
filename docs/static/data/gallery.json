@@ -1,0 +1,23 @@
+[
+  {"title": "FIFA Analytics", "image_url": "static/images/project_ui/fifa-analytics.jpg"},
+  {"title": "AgriMate AI", "image_url": "static/images/project_ui/agrimate-ai.jpg"},
+  {"title": "VaultShare", "image_url": "static/images/project_ui/vaultshare.jpg"},
+  {"title": "YOLOv5 Detection", "image_url": "static/images/project_ui/yolov5-detection.jpg"},
+  {"title": "DSE Scraper", "image_url": "static/images/project_ui/dse-scraper.jpg"},
+  {"title": "Call Centre CRM", "image_url": "static/images/project_ui/call-centre-crm.jpg"},
+  {"title": "Inventory Distribution", "image_url": "static/images/project_ui/inventory-distribution.jpg"},
+  {"title": "Inventory Management", "image_url": "static/images/project_ui/inventory-mgmt.jpg"},
+  {"title": "EDCL ERP", "image_url": "static/images/project_ui/edcl-erp.jpg"},
+  {"title": "EduTube Portal", "image_url": "static/images/project_ui/edutube-portal.jpg"},
+  {"title": "EATL AppStore", "image_url": "static/images/project_ui/eatl-appstore.jpg"},
+  {"title": "Attendance Management", "image_url": "static/images/project_ui/attendance-mgmt.jpg"},
+  {"title": "Stock Assistant", "image_url": "static/images/project_ui/stock-assistant.jpg"},
+  {"title": "Know-It Scanner", "image_url": "static/images/project_ui/know-it-scanner.jpg"},
+  {"title": "Power BI Dashboard", "image_url": "static/images/project_ui/powerbi-dash.jpg"},
+  {"title": "SEQAEP World Bank", "image_url": "static/images/project_ui/seqaep-worldbank.jpg"},
+  {"title": "DRX24 Platform", "image_url": "static/images/project_ui/drx24-platform.jpg"},
+  {"title": "Face Verification", "image_url": "static/images/project_ui/face-verification.jpg"},
+  {"title": "Agorak Kiosk", "image_url": "static/images/project_ui/agorak-kiosk.jpg"},
+  {"title": "Warehouse Retail", "image_url": "static/images/project_ui/warehouse-retail.jpg"},
+  {"title": "Yamaha Portal", "image_url": "static/images/project_ui/yamaha-portal.jpg"}
+]

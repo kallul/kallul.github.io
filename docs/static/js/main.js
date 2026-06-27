@@ -472,7 +472,7 @@ async function loadSkills() {
   if (!grid) return;
 
   try {
-    const res = await fetch("/api/v1/skills/");
+    const res = await fetch("static/data/skills.json");
     if (!res.ok) throw new Error();
     const skills = await res.json();
 
@@ -526,7 +526,7 @@ async function loadProjects() {
   if (!grid) return;
 
   try {
-    const res = await fetch("/api/v1/projects/");
+    const res = await fetch("static/data/projects.json");
     if (!res.ok) throw new Error();
     const projects = await res.json();
 
@@ -587,7 +587,7 @@ async function loadGallery() {
   if (!track1 || !track2) return;
 
   try {
-    const res = await fetch("/api/v1/gallery/");
+    const res = await fetch("static/data/gallery.json");
     if (!res.ok) throw new Error();
     const items = await res.json();
 
@@ -634,7 +634,7 @@ function setupContactForm() {
     btn.textContent = "Sending…";
 
     try {
-      const res = await fetch("/api/v1/contact/", {
+      const res = await fetch("https://portfolio.onrender.com/api/v1/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
